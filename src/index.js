@@ -1,10 +1,12 @@
-import React from "react"
-import ReactDOM from "react-dom"
-import "./styles.css"
-import LandingPage from "./LandingPage"
+import React from "react";
+import { createRoot } from "react-dom";
+import "./styles.css";
+import { ChakraProvider } from "@chakra-ui/react";
+import LandingPage from "./LandingPage";
 
-ReactDOM.createRoot(document.getElementById("root")).render(
-  <Chakra>
+const root = document.getElementById("root");
+createRoot(root).render(
+  <ChakraProvider>
     <LandingPage />
-  </Chakra>,
-)
+  </ChakraProvider>
+);

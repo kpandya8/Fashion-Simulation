@@ -1,6 +1,8 @@
 import React, { useState } from "react"
 import App from "./App"
 import About from "./About"
+import { ChakraProvider } from '@chakra-ui/react';
+
 import { Box, Button } from "@chakra-ui/react"
 
 const LandingPage = () => {
