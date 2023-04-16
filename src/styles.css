@@ -1,4 +1,7 @@
 @import url("https://rsms.me/inter/inter.css");
+/* @import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities"; */
 
 html,
 body,
@@ -19,6 +22,17 @@ body {
   justify-content: center;
 }
 
+.dropdown-container {
+  position: absolute;
+  top: 20px;
+  left: 80%;
+  background-color: #ffffff;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
 #root {
   width: 76ch;
 }
@@ -36,18 +50,60 @@ h1 {
   color: #272730;
 }
 
-.picker {
-  position: absolute !important;
-  top: 74px;
-  left: 70px;
-  width: 90px !important;
-  height: 90px !important;
+/* Custom select */
+.custom-select {
+  position: relative;
+  font-family: "Inter var", sans-serif;
 }
 
-.Mat {
-  position: absolute !important;
-  top: 200px;
-  left: 70px;
-  width: 90px !important;
-  height: 90px !important;
+.custom-select select {
+  display: none;
 }
+
+.select-selected {
+  background-color: #ffffff;
+  font-size: 1em;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.select-items {
+  position: absolute;
+  background-color: #ffffff;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 99;
+  border-radius: 5px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.25s ease-out;
+}
+
+.select-items div {
+  padding: 10px;
+  cursor: pointer;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.select-items div:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.select-items div:last-child {
+  border-bottom: none;
+}
+
+/* When the select box is open (class "select-hide" is added to the container) */
+.select-hide .select-items {
+  max-height: 150px;
+  overflow-y: auto;
+}
+
+/* @layer components {
+  .btn-primary {
+    @apply py-2 px-4 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75;
+  }
+} */
