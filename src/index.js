@@ -1,5 +1,10 @@
-import { createRoot } from "react-dom/client"
+import React from "react"
+import ReactDOM from "react-dom"
 import "./styles.css"
-import App from "./App"
+import LandingPage from "./LandingPage"
 
-createRoot(document.getElementById("root")).render(<App />)
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <Chakra>
+    <LandingPage />
+  </Chakra>,
+)

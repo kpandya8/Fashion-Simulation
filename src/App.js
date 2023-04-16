@@ -219,6 +219,7 @@ function Picker() {
 
 export default function App() {
   return (
+    
     <>
       <Canvas shadows camera={{ position: [0, 0, 4], fov: 50 }}>
         <ambientLight intensity={0.7} />
