@@ -1,7 +1,7 @@
 import { useRef, useState, useEffect } from "react"
 import { Canvas, useFrame } from "@react-three/fiber"
+import { useTexture } from "@react-three/drei";
 import { useGLTF, ContactShadows, Environment, OrbitControls } from "@react-three/drei"
-import { HexColorPicker } from "react-colorful"
 import { proxy, useSnapshot } from "valtio"
 
 const state = proxy({
@@ -35,17 +35,26 @@ function Shoe() {
   return (
     <group
       ref={ref}
-      onPointerOver={(e) => (e.stopPropagation(), set(e.object.material.name))}
-      onPointerOut={(e) => e.intersections.length === 0 && set(null)}
+      onPointerOver={(e) => {
+        if (e.object.material.name !== "body") {
+          e.stopPropagation()
+          set(e.object.material.name)
+        }
+      }}
+      onPointerOut={(e) => {
+        if (e.object.material.name !== "body") {
+          e.intersections.length === 0 && set(null)
+        }
+      }}
       onPointerMissed={() => (state.current = null)}
-      onClick={(e) => (e.stopPropagation(), (state.current = e.object.material.name))}>
+      onClick={(e) => {
+        if (e.object.material.name !== "body") {
+          e.stopPropagation()
+          state.current = e.object.material.name
+        }
+      }}>
       <mesh receiveShadow castShadow geometry={nodes.shoe.geometry} material={materials.tee} material-color={snap.items.tee} />
-      <mesh receiveShadow castShadow geometry={nodes.shoe_1.geometry} material={materials.body} material-color={snap.items.body} />
-      {/* <mesh receiveShadow castShadow geometry={nodes.shoe_2.geometry} material={materials.caps} material-color={snap.items.caps} />
-      <mesh receiveShadow castShadow geometry={nodes.shoe_3.geometry} material={materials.inner} material-color={snap.items.inner} />
-      <mesh receiveShadow castShadow geometry={nodes.shoe_4.geometry} material={materials.sole} material-color={snap.items.sole} />
-      <mesh receiveShadow castShadow geometry={nodes.shoe_5.geometry} material={materials.stripes} material-color={snap.items.stripes} />
-      <mesh receiveShadow castShadow geometry={nodes.shoe_6.geometry} material={materials.band} material-color={snap.items.band} /> */}
+      <mesh receiveShadow castShadow geometry={nodes.shoe_1.geometry} material={materials.body} />
       {/* <mesh receiveShadow castShadow geometry={nodes.shoe_7.geometry} material={materials.patch} material-color={snap.items.patch} /> */}
     </group>
   )
@@ -53,10 +62,31 @@ function Shoe() {
 
 function Picker() {
   const snap = useSnapshot(state)
+
+  const colorOptions = [
+    { value: "#ffffff", label: "White" },
+    { value: "#000000", label: "Black" },
+    { value: "#ff0000", label: "Red" },
+    { value: "#00ff00", label: "Green" },
+    { value: "#0000ff", label: "Blue" },
+  ]
+
+  const handleChange = (e) => {
+    state.items[snap.current] = e.target.value
+  }
+
+  // Show the dropdown only when 'tee' material is selected
+  const showDropdown = snap.current === "tee"
+
   return (
-    <div style={{ display: snap.current ? "block" : "none" }}>
-      <HexColorPicker className="picker" color={snap.items[snap.tee]} onChange={(color) => (state.items[snap.current] = color)} />
-      <h1>{snap.current}</h1>
+    <div className="dropdown-container" style={{ display: showDropdown ? "block" : "none" }}>
+      <select value={snap.items[snap.current]} onChange={handleChange}>
+        {colorOptions.map((option) => (
+          <option key={option.value} value={option.value}>
+            {option.label}
+          </option>
+        ))}
+      </select>
     </div>
   )
 }
