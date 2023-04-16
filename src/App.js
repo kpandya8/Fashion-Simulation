@@ -1,20 +1,31 @@
 import { useRef, useState, useEffect } from "react"
 import { Canvas, useFrame } from "@react-three/fiber"
-import { useTexture } from "@react-three/drei";
-import { useGLTF, ContactShadows, Environment, OrbitControls } from "@react-three/drei"
+import { useGLTF, ContactShadows, Environment, OrbitControls, TextureLoader } from "@react-three/drei"
 import { proxy, useSnapshot } from "valtio"
+import * as THREE from "three"
+// import "./styles.css"
 
 const state = proxy({
   current: null,
   items: {
-    tee: "#ffffff",
+    tee: "texture1",
   },
 })
 
-function Shoe() {
+const textureLoader = new THREE.TextureLoader()
+
+const textures = {
+  texture1: textureLoader.load("1.jpg"),
+  texture2: textureLoader.load("2.jpg"),
+  texture3: textureLoader.load("3.jpg"),
+  texture4: textureLoader.load("4.jpg"),
+  // Add more textures here
+}
+
+function Vyom() {
   const ref = useRef()
   const snap = useSnapshot(state)
-  const { nodes, materials } = useGLTF("shoe-draco.glb")
+  const { nodes, materials } = useGLTF("vyom.glb")
   const [hovered, set] = useState(null)
 
   useFrame((state) => {
@@ -31,7 +42,6 @@ function Shoe() {
       return () => (document.body.style.cursor = `url('data:image/svg+xml;base64,${btoa(auto)}'), auto`)
     }
   }, [hovered])
-
   return (
     <group
       ref={ref}
@@ -53,9 +63,15 @@ function Shoe() {
           state.current = e.object.material.name
         }
       }}>
-      <mesh receiveShadow castShadow geometry={nodes.shoe.geometry} material={materials.tee} material-color={snap.items.tee} />
+      <mesh
+        receiveShadow
+        castShadow
+        geometry={nodes.shoe.geometry}
+        material={materials.tee}
+        material-map={snap.items.tee ? textures[snap.items.tee] : null}
+      />
       <mesh receiveShadow castShadow geometry={nodes.shoe_1.geometry} material={materials.body} />
-      {/* <mesh receiveShadow castShadow geometry={nodes.shoe_7.geometry} material={materials.patch} material-color={snap.items.patch} /> */}
+      {/* ... (previous mesh elements) */}
     </group>
   )
 }
@@ -63,12 +79,12 @@ function Shoe() {
 function Picker() {
   const snap = useSnapshot(state)
 
-  const colorOptions = [
-    { value: "#ffffff", label: "White" },
-    { value: "#000000", label: "Black" },
-    { value: "#ff0000", label: "Red" },
-    { value: "#00ff00", label: "Green" },
-    { value: "#0000ff", label: "Blue" },
+  const textureOptions = [
+    { value: "texture1", label: "Jungle" },
+    { value: "texture2", label: "Abstract" },
+    { value: "texture3", label: "Checkered" },
+    { value: "texture4", label: "Solid" },
+    // Add more texture options here
   ]
 
   const handleChange = (e) => {
@@ -81,7 +97,7 @@ function Picker() {
   return (
     <div className="dropdown-container" style={{ display: showDropdown ? "block" : "none" }}>
       <select value={snap.items[snap.current]} onChange={handleChange}>
-        {colorOptions.map((option) => (
+        {textureOptions.map((option) => (
           <option key={option.value} value={option.value}>
             {option.label}
           </option>
@@ -97,7 +113,7 @@ export default function App() {
       <Canvas shadows camera={{ position: [0, 0, 4], fov: 50 }}>
         <ambientLight intensity={0.7} />
         <spotLight intensity={0.5} angle={0.1} penumbra={1} position={[10, 15, 10]} castShadow />
-        <Shoe />
+        <Vyom />
         <Environment preset="city" />
         <ContactShadows position={[0, -0.8, 0]} opacity={0.25} scale={10} blur={1.5} far={0.8} />
         <OrbitControls
@@ -110,6 +126,9 @@ export default function App() {
         />
       </Canvas>
       <Picker />
+      <div className="p-4 bg-gray-200">
+        <h2 className="text-2xl font-bold text-indigo-700">Hello, world!</h2>
+      </div>
     </>
   )
 }

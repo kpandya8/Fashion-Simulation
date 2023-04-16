@@ -10,7 +10,7 @@
   ],
   "main": "src/index.js",
   "dependencies": {
-    "@react-three/drei": "9.47.1",
+    "@react-three/drei": "^9.47.1",
     "@react-three/fiber": "8.9.1",
     "react": "18.2.0",
     "react-colorful": "5.6.1",
@@ -20,6 +20,7 @@
     "valtio": "1.7.6"
   },
   "devDependencies": {
+    "tailwindcss": "^3.3.1",
     "typescript": "3.8.3"
   },
   "scripts": {
