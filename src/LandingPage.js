@@ -13,7 +13,7 @@ const LandingPage = () => {
   }
 
   return (
-    <Box>
+    <Box bg='tomato' w='100%' h='100%'>
       {currentPage === "app" && <App />}
       {currentPage === "about" && <About />}
       <Button onClick={switchPage} colorScheme="blue">
