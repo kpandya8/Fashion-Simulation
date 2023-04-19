@@ -1,30 +1,16 @@
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
-
 html,
-body,
-#root {
-  position: relative;
+body {
+  background-image: linear-gradient(135deg, #716fe7, #f1ef71);
+  width: 100%;
+  height: 100%;
   margin: 0;
   padding: 0;
-  overflow: hidden;
-  outline: none;
-  width: 100vw;
-  height: 100vh;
-}
-
-body {
-  background: white;
-  font-family: "Inter var", sans-serif;
-  display: flex;
-  justify-content: center;
 }
 
 .dropdown-container {
   position: absolute;
-  top: 20px;
-  left: 80%;
+  top: 30%;
+  left: 65%;
   background-color: #ffffff;
   padding: 10px;
   border-radius: 5px;
@@ -33,19 +19,19 @@ body {
 }
 
 #root {
-  width: 76ch;
+  width: 100%;
+  height: 80%;
+  position: absolute;
+   
 }
 
+
 h1 {
-  position: absolute;
-  top: 43px;
-  left: 140px;
-  padding: 0;
-  margin: 40px;
+  position: relative;
   font-size: 5em;
   font-weight: 600;
   line-height: 0.7em;
-  letter-spacing: -4px;
+  letter-spacing: 1px;
   color: #272730;
 }
 
@@ -106,3 +92,16 @@ h1 {
     @apply py-2 px-4 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75;
   }
 } */
+.my-canvas {
+  background-image: linear-gradient(135deg, #716fe7, #f1ef71); /* Replace with your desired color */
+  width: 50%; /* Set to the same value as height */
+  height: 50%;
+  border-radius: 25px;
+  position: absolute;
+  top: 5%;
+}
+
+
+.box{
+  border-radius: 500px;
+}
