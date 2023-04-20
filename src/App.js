@@ -32,7 +32,9 @@ const textures = {
 function Shoe() {
   const ref = useRef()
   const snap = useSnapshot(state)
-  const { nodes, materials } = useGLTF("vyom.glb")
+  const { nodes, materials } = useGLTF("mehtasaheb.glb")
+  // const { nodes, materials } = useGLTF("vyom.glb")
+  // const { nodes, materials } = useGLTF("aryan.glb")
   const [hovered, set] = useState(null)
 
   useFrame((state) => {
@@ -141,14 +143,14 @@ function Picker() {
         <Flex alignItems="center">
         
           <Text fontWeight="bold" color="black" mx={1}>
-          <br/>$69
+            <br/>$69
           </Text>
           <Text
             textDecoration="line-through"
             textDecorationColor="red"
             color="red"
           >
-          <br/>  $100
+             <br/> $100
           </Text>
         </Flex>
       </Text>
