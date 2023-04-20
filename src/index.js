@@ -9,6 +9,11 @@ const root = document.getElementById("root");
 createRoot(root).render(
   <ChakraProvider>
     <LandingPage />
+
+
+
+
+    
   </ChakraProvider>
 );
 
