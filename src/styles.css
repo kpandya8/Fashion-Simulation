@@ -1,6 +1,6 @@
 html,
 body {
-  background-image: linear-gradient(135deg, #716fe7, #f1ef71);
+  background-image: linear-gradient(135deg, #000000, #ffffff);
   width: 100%;
   height: 100%;
   margin: 0;
@@ -93,7 +93,7 @@ h1 {
   }
 } */
 .my-canvas {
-  background-image: linear-gradient(135deg, #716fe7, #f1ef71); /* Replace with your desired color */
+  background-image: radial-gradient(#000000, #ffffff); /* Replace with your desired color */
   width: 50%; /* Set to the same value as height */
   height: 50%;
   border-radius: 25px;

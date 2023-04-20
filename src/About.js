@@ -5,22 +5,22 @@ import { Flex, Box, Heading, Text, Image } from "@chakra-ui/react";
 const About = () => {
   const teamMembers = [
     {
+      name: "Suvarshitha Kalvakuntla",
+      title: "(1225459183)",
+      image: "./suvarshitha.png",
+      description: "Graduate student at Arizona State University",
+    },
+    {
       name: "Aryan Mehta",
       title: "(1225456817)",
       image: "./aryan.jpg",
-      description: "[[Contribution]]",
-    },
-    {
-      name: "Suvarshitha Kalvakuntla",
-      title: "(1225459183)",
-      image: "",
-      description: "[[Contribution]]",
+      description: "Graduate student at Arizona State University",
     },
     {
       name: "Bindiya Vundavalli",
       title: "(1221958478)",
-      image: "https://via.placeholder.com/150",
-      description: "[[Contribution]]",
+      image: "./bindiya.png",
+      description: "Graduate student at Arizona State University",
     },
     // Add more team members here
   ];

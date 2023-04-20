@@ -121,9 +121,6 @@ function Picker() {
   };
   return (
     <Box w="300px" h="300px" className="dropdown-container">
-     
-  
-     
       <Box className="description"><Heading>{snap.description}</Heading></Box>
       <Box className="more-info">{snap.moreInfo}</Box>
       <Box w="20px" h="30px"></Box>
