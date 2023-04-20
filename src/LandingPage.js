@@ -24,21 +24,7 @@ const LandingPage = () => {
         alignItems="center"
       >
         <Box w="80%" h="80%">
-          <Flex p={4} justifyContent="space-between" alignItems="center">
-          <Image src="../Soft_logo.png" alt="Logo" h="50px" />
-          <Text>CSE 594: Final Project Demo (Spring 2023) </Text>
-            <Menu>
-              <MenuButton as={Button} colorScheme="gray">
-                Menu
-              </MenuButton>
-              <MenuList>
-                <MenuItem onClick={() => switchPage("app")}>App</MenuItem>
-                <MenuItem onClick={() => switchPage("about")}>About</MenuItem>
-                <MenuItem onClick={redirectToExternalLink}>User Research Survey</MenuItem>
-              </MenuList>
-            </Menu>
-           
-          </Flex>
+         
           {currentPage === "app" && <App />}
           {currentPage === "about" && <About />}
         </Box>
