@@ -3,7 +3,9 @@ import { Canvas, useFrame } from "@react-three/fiber"
 import { useGLTF, ContactShadows, Environment, OrbitControls, TextureLoader } from "@react-three/drei"
 import { HexColorPicker } from "react-colorful"
 import { proxy, useSnapshot } from "valtio"
-import { Box, Select, Heading, Text} from "@chakra-ui/react";
+import { Box, Select, Heading, Text, Button, VStack,Stack, HStack, AspectRatio, Flex } from "@chakra-ui/react";
+
+
 
 import * as THREE from "three"
 import "./styles.css";
@@ -11,19 +13,19 @@ import "./styles.css";
 const state = proxy({
   current: null,
   items: {
-    tee: "texture1",
+    tee: "Jungle",
   },
-  description: "Outfit 1: Jungle",
-  moreInfo: "Jungle texture is inspired by the lush greenery of the forest."
+  description: "Jungle T-Shirt",
+  moreInfo: "Introducing our new jungle-inspired t-shirt, perfect for those who love the wild outdoors. The shirt features a beautiful jungle texture design, showcasing the lush green foliage and tropical flowers found in the heart of the jungle."
 })
 
 const textureLoader = new THREE.TextureLoader()
 
 const textures = {
-  texture1: textureLoader.load("1.jpg"),
-  texture2: textureLoader.load("2.jpg"),
-  texture3: textureLoader.load("3.jpg"),
-  texture4: textureLoader.load("4.jpg"),
+  Jungle: textureLoader.load("Jungle.jpg"),
+  Abstract: textureLoader.load("Abstract.jpg"),
+  Checkered: textureLoader.load("Checkered.jpg"),
+  Solid: textureLoader.load("Solid.jpg"),
   // Add more textures here
 }
 
@@ -84,55 +86,128 @@ function Picker() {
 
   const textureOptions = [
     {
-      value: "texture1",
+      value: "Jungle",
       label: "Jungle",
-      description: "This is the Jungle texture.",
-      moreInfo: "Jungle texture is inspired by the lush greenery of the forest.",
+      description: "Jungle T-Shirt",
+      moreInfo: "Introducing our new jungle-inspired t-shirt, perfect for those who love the wild outdoors. The shirt features a beautiful jungle texture design, showcasing the lush green foliage and tropical flowers found in the heart of the jungle.",
     },
     {
-      value: "texture2",
+      value: "Abstract",
       label: "Abstract",
-      description: "This is the Abstract texture.",
-      moreInfo: "Abstract texture features unique and artistic patterns.",
+      description: "Abstract T-Shirt",
+      moreInfo: "T-shirt with a stunning abstract texture design! Made with high-quality materials, this t-shirt offers both comfort and style. ",
     },
     {
-      value: "texture3",
+      value: "Checkered",
       label: "Checkered",
-      description: "This is the Checkered texture.",
-      moreInfo: "Checkered texture features unique and artistic patterns.",
+      description: "Checkered T-Shirt",
+      moreInfo: "This t-shirt features a stylish and timeless checkered design that will elevate any outfit. The pink and white checkered pattern is versatile and can be dressed up or down, making it perfect for any occasion.",
     },
     {
-      value: "texture4",
+      value: "Solid",
       label: "Solid",
-      description: "This is the Solid texture.",
-      moreInfo: "Solid texture features unique and artistic patterns.",
+      description: "Solid T-Shirt",
+      moreInfo: "This t-shirt features a solid texture design, giving it a sleek and modern look. The texture is created through the use of high-quality fabric and precise stitching,  ensuring both comfort and durability. ",
     },
     // ...other options
   ];
   
-  const handleChange = (e) => {
-    state.items.tee = e.target.value;
-    const selectedOption = textureOptions.find(
-      (option) => option.value === e.target.value
-    );
-    state.description = selectedOption.description;
-    state.moreInfo = selectedOption.moreInfo;
+  const handleClick = (option) => {
+    state.items.tee = option.value;
+    state.description = option.description;
+    state.moreInfo = option.moreInfo;
   };
   return (
-    <Box w="400px" h="600px" className="dropdown-container">
-      <Box className="description"><Heading>{snap.description}</Heading></Box>
-      <Box className="more-info">{snap.moreInfo}</Box>
-      <Box w="20px" h="30px"></Box>
-      <Select value={snap.items.tee} onChange={handleChange}>
-      {textureOptions.map((option) => (
-        <option key={option.value} value={option.value}>
-          {option.label}
-        </option>
-      ))}
-          </Select>
+    <VStack
+      className="dropdown-container "
+      w="100%"
+      h="100%"
+      p={4}
+      spacing={4}
+      alignItems="flex-start"
+      backgroundColor="gray.100"
+      borderRadius="md"
+      boxShadow="md"
+    >
+          <Box width="600px" height="10px"></Box>
+      <Heading bgGradient='linear(to-l, #140f0c,  #554e53,  #140f0c)'  bgClip='text' size="2xl">{snap.description}</Heading>
+      <Box width="600px" height="100px"></Box>
+    
+      <Box>
+      <Text size="lg" fontWeight="regular">
+       
+       {snap.moreInfo} <br/>
+     
+        <Flex alignItems="center">
+        
+          <Text fontWeight="bold" color="black" mx={1}>
+          <br/>$69
+          </Text>
+          <Text
+            textDecoration="line-through"
+            textDecorationColor="red"
+            color="red"
+          >
+          <br/>  $100
+          </Text>
+        </Flex>
+      </Text>
     </Box>
+      <Box width="600px" height="100px"></Box>
+
+
+      <Stack direction='row' spacing={4}>
+  <Button colorScheme='green' variant='solid'>
+    Buy Now
+  </Button>
+  <Button colorScheme='blue' variant='outline'>
+    Add to Cart
+  </Button>
+
+
+</Stack>
+      <Box width="600px" height="500px"></Box>
+
+      <HStack
+        w="100%"
+        spacing={4}
+        justifyContent="space-around"
+        alignItems="center"
+        wrap="wrap"
+      >
+        {textureOptions.map((option) => (
+          <Box
+            key={option.value}
+            onClick={() => handleClick(option)}
+            cursor="pointer"
+            borderRadius="md"
+            boxShadow="md"
+            p={2}
+          >
+            <Box
+              width="100px"
+              height="100px"
+              overflow="hidden"
+              borderRadius="8px"
+            >
+              <img
+                src={`${process.env.PUBLIC_URL}/${option.value}.jpg`}
+                alt={option.label}
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                }}
+              />
+            </Box>
+            <Text mt={2} textAlign="center">
+              {option.label}
+            </Text>
+          </Box>
+        ))}
+      </HStack>
+    </VStack>
   );
-  
 }
 
 
