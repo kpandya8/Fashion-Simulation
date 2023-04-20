@@ -10,7 +10,7 @@ body {
 .dropdown-container {
   position: absolute;
   top: 5%;
-  left: 85%;
+  left: 95%;
   background-color: #ffffff;
   border-left: 10px;
   border-color: #000000;
@@ -19,8 +19,8 @@ body {
 }
 .render-model {
   position: absolute;
-  top: 5%;
-  left: 0%;  
+  top: 3%;
+  left: -20px;  
 }
 
 #root {
