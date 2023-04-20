@@ -9,22 +9,29 @@ body {
 
 .dropdown-container {
   position: absolute;
-  top: 30%;
-  left: 65%;
+  top: 5%;
+  left: 85%;
   background-color: #ffffff;
-  padding: 10px;
+  border-left: 10px;
+  border-color: #000000;
   border-radius: 5px;
-  border: 1px solid rgba(0, 0, 0, 0.15);
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  padding: 10px;
+  
+}
+.render-model {
+  position: absolute;
+  top: 5%;
+  left: 0%;  
 }
 
 #root {
-  width: 100%;
+  width: 80%;
   height: 80%;
   position: absolute;
-   
+  left: 0;
+  right: 0;
+  margin: auto;
 }
-
 
 h1 {
   position: relative;
@@ -93,9 +100,8 @@ h1 {
   }
 } */
 .my-canvas {
-  background-image: radial-gradient(#000000, #ffffff); /* Replace with your desired color */
-  width: 50%; /* Set to the same value as height */
-  height: 50%;
+    background-image: linear-gradient(to bottom, #554e53, #2f272a, #1b1312, #140f0c);
+    /* Replace with your desired color */
   border-radius: 25px;
   position: absolute;
   top: 5%;

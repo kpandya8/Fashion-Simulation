@@ -23,7 +23,7 @@ const LandingPage = () => {
         justifyContent="center"
         alignItems="center"
       >
-        <Box w="80%" h="80%">
+        <Box w="20%" h="60%">
          
           {currentPage === "app" && <App />}
           {currentPage === "about" && <About />}

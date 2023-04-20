@@ -34,9 +34,8 @@ function Shoe() {
   const [hovered, set] = useState(null)
 
   useFrame((state) => {
-    const t = state.clock.getElapsedTime()
-    // ref.current.rotation.set(Math.cos(t / 4) / 8, Math.sin(t / 4) / 8, -0.2 - (1 + Math.sin(t / 1.5)) / 20)
-    // ref.current.position.y = (1 + Math.sin(t / 1.5)) / 10
+    ref.current.rotation.set(0, Math.PI / 2, 0)
+    ref.current.position.set(0,0,0)
   })
 
   useEffect(() => {
@@ -120,7 +119,7 @@ function Picker() {
     state.moreInfo = selectedOption.moreInfo;
   };
   return (
-    <Box w="300px" h="300px" className="dropdown-container">
+    <Box w="400px" h="600px" className="dropdown-container">
       <Box className="description"><Heading>{snap.description}</Heading></Box>
       <Box className="more-info">{snap.moreInfo}</Box>
       <Box w="20px" h="30px"></Box>
@@ -142,8 +141,9 @@ export default function App() {
   return (
     
     <>
+    <Box w="600px" h="600px" className="render-model">
       <Canvas class="my-canvas" shadows camera={{ position: [0, 0, 4], fov: 50 }}>
-        <ambientLight intensity={0.7} />
+        <ambientLight intensity={0.8} />
         <spotLight intensity={0.5} angle={0.1} penumbra={1} position={[10, 15, 10]} castShadow />
         <Shoe />
         <Environment preset="city" />
@@ -157,7 +157,8 @@ export default function App() {
           enablePan={false}
         />
       </Canvas>
-      <Picker />
+      <Picker/>
+      </Box>
     </>
   )
 }
